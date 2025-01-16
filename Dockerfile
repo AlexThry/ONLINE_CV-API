@@ -38,7 +38,8 @@ COPY --chown=nestjs:nodejs --from=prunner /app/package.json ./package.json
 COPY --chown=nestjs:nodejs --from=installer /app/dist ./dist
 COPY --chown=nestjs:nodejs --from=prunner /app/node_modules ./node_modules
 COPY --chown=nestjs:nodejs --from=installer /app/start.sh ./start.sh
+RUN chmod +x start.sh
 
 # CMD [ "sh","-c","while :; do echo 'container is running'; sleep 60; done" ]
 # CMD [ "sh", "start.sh" ]
-ENTRYPOINT [ "start.sh" ]
+ENTRYPOINT [ "./start.sh" ]

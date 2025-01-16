@@ -1,8 +1,8 @@
 services:
-  online-cv-api_dev:
+  online-cv-api:
     environment:
       - TOKEN_GITHUB
-    container_name: online-cv-api_dev
+    container_name: online-cv-api
     build:
       context: .
       dockerfile: Dockerfile
