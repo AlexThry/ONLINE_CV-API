@@ -51,7 +51,7 @@ jobs:
       #     FRONTEND_URL: ${{ secrets.FRONTEND_URL_STAGING }}
       #   run: |
       #     docker pull alexthry/online-cv-api:latest
-      #     docker compose -f docker-compose.dev.yaml up -d
+      #     docker compose -f docker-compose.dev.yal up -d
       #     docker system prune --all --volumes --force
 
       - name: 🚀 Run Docker Compose on Production
@@ -61,5 +61,5 @@ jobs:
         #   DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
           docker pull alexthry/online-cv-api:production
-          docker compose -f docker-compose.prod.yaml up -d
+          docker compose -f docker-compose.prod.yml up -d
           docker system prune --all --volumes --force
