@@ -1,0 +1,11 @@
+services:
+  online-cv-api_dev:
+    environment:
+      - TOKEN_GITHUB
+    container_name: online-cv-api_dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports: 
+      - 3000:3000
