@@ -50,7 +50,7 @@ jobs:
       #     DATABASE_URL: ${{ secrets.DATABASE_URL_STAGING }}
       #     FRONTEND_URL: ${{ secrets.FRONTEND_URL_STAGING }}
       #   run: |
-      #     docker pull algomax/nestjs-chat-api:latest
+      #     docker pull alexthry/online-cv-api:latest
       #     docker compose -f docker-compose.dev.yaml up -d
       #     docker system prune --all --volumes --force
 
@@ -60,6 +60,6 @@ jobs:
         #   FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
         #   DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
-          docker pull algomax/nestjs-chat-api:production
+          docker pull alexthry/online-cv-api:production
           docker compose -f docker-compose.prod.yaml up -d
           docker system prune --all --volumes --force
