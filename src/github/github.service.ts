@@ -49,7 +49,8 @@ export class GithubService {
   async getUserCommitsPerMonth(username: string): Promise<any> {
     const cacheKey = `commits_${username}`;
     const cachedData = this.cache.get(cacheKey);
-
+    console.log("feur");
+    
     if (cachedData) {
       return cachedData;
     }
