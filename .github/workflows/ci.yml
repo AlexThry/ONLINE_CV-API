@@ -1,4 +1,3 @@
-
 name: 🚀 Deploy
 on:
   push:
@@ -57,10 +56,9 @@ jobs:
 
       - name: 🚀 Run Docker Compose on Production
         if: ${{ github.ref == 'refs/heads/main' }}
-        # env:
-        #   FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
-        #   DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
+          docker compose -f docker-compose.prod.yml down
+          docker rmi alexthry/online-cv-api:production || true
           docker pull alexthry/online-cv-api:production
           docker compose -f docker-compose.prod.yml up -d
           docker system prune --all --volumes --force
