@@ -45,7 +45,7 @@ jobs:
 
       - name: 🐳 Remove old Docker images
         run: |
-          docker rmi -f $(docker images -q alexthry/online-cv-api)
+          docker images -q alexthry/online-cv-api | xargs -r docker rmi -f
 
       - name: 🐳 Build Production Image
         if: ${{ github.ref == 'refs/heads/main' }}
