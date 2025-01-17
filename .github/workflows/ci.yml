@@ -59,6 +59,6 @@ jobs:
         run: |
           docker compose -f docker-compose.prod.yml down
           docker rmi alexthry/online-cv-api || true
-          docker pull alexthry/online-cv-api:latest
+          docker pull alexthry/online-cv-api:production
           docker compose -f docker-compose.prod.yml up -d
           docker system prune --all --volumes --force
