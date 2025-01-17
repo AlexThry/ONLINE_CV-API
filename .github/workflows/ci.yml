@@ -58,7 +58,7 @@ jobs:
         if: ${{ github.ref == 'refs/heads/main' }}
         run: |
           docker compose -f docker-compose.prod.yml down
-          docker rmi alexthry/online-cv-api:production || true
-          docker pull alexthry/online-cv-api:production
+          docker rmi online-cv-api || true
+          docker pull alexthry/online-cv-api:latest
           docker compose -f docker-compose.prod.yml up -d
           docker system prune --all --volumes --force
