@@ -36,6 +36,17 @@ jobs:
           key: ${{ runner.os }}-buildx-${{ github.sha }}-${{ github.ref_name }}
           restore-keys: |
             ${{ runner.os }}-buildx-
+
+      - name: 🐳 Stop and remove running Docker containers
+        run: |
+          docker ps -q --filter "ancestor=alexthry/online-cv-api" | xargs -r docker stop
+          docker ps -a -q --filter "ancestor=alexthry/online-cv-api" | xargs -r docker rm
+
+
+      - name: 🐳 Remove old Docker images
+        run: |
+          docker rmi -f $(docker images -q alexthry/online-cv-api)
+
       - name: 🐳 Build Production Image
         if: ${{ github.ref == 'refs/heads/main' }}
         uses: docker/build-push-action@v5.1.0
