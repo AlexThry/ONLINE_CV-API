@@ -61,22 +61,31 @@ export class GithubService {
       sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
 
       for (const repo of repos) {
-        const commits = await this.octokit.rest.repos.listCommits({
-          owner: username,
-          repo: repo.name,
-          per_page: 100,
-          since: sixMonthsAgo.toISOString(),
-        });
+        try {
+          const commits = await this.octokit.rest.repos.listCommits({
+            owner: username,
+            repo: repo.name,
+            per_page: 100,
+            since: sixMonthsAgo.toISOString(),
+          });
 
-        for (const commit of commits.data) {
-          const month = new Date(commit.commit.author.date).getMonth() + 1;
-          const year = new Date(commit.commit.author.date).getFullYear();
-          const key = `${year}-${month}`;
+          for (const commit of commits.data) {
+            const month = new Date(commit.commit.author.date).getMonth() + 1;
+            const year = new Date(commit.commit.author.date).getFullYear();
+            const key = `${year}-${month}`;
 
-          if (!commitsPerMonth[key]) {
-            commitsPerMonth[key] = 0;
+            if (!commitsPerMonth[key]) {
+              commitsPerMonth[key] = 0;
+            }
+            commitsPerMonth[key]++;
           }
-          commitsPerMonth[key]++;
+        } catch (repoError) {
+          if (repoError.message.includes('Git Repository is empty')) {
+            console.warn(`Le dépôt ${repo.name} est vide, il sera ignoré.`);
+            continue;
+          } else {
+            throw repoError;
+          }
         }
       }
 
