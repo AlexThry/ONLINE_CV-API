@@ -42,4 +42,4 @@ jobs:
 
       - name: 🚀 Deploy to server
         run: |
-          scp -r build/* ${{SERVER_USERNAME}}@${{SERVER_NAME}}:/deployments/cv-app/backend
+          scp -r build/* ${{secrets.SERVER_USERNAME}}@${{secrets.SERVER_NAME}}:/deployments/cv-app/backend
