@@ -12,6 +12,8 @@ export class GithubService {
     this.octokit = new Octokit({
       auth: configService.get('TOKEN_GITHUB'),
     });
+    console.log('TOKEN_GITHUB', configService.get('TOKEN_GITHUB'));
+    
   }
 
   async getUserRepos(username: string, perPage: number): Promise<any> {
@@ -49,7 +51,6 @@ export class GithubService {
   async getUserCommitsPerMonth(username: string): Promise<any> {
     const cacheKey = `commits_${username}`;
     const cachedData = this.cache.get(cacheKey);
-    console.log("feur");
     
     if (cachedData) {
       return cachedData;
