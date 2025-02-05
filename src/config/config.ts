@@ -1,3 +1,3 @@
 export const config = () => ({
-    TOKEN_GITHUB: process.env.GITHUB_TOKEN || ""
+    TOKEN_GITHUB: process.env.TOKEN_GITHUB || ""
 })
