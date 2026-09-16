@@ -1,7 +1,7 @@
 services:
   online-cv-api:
     environment:
-      - TOKEN_GITHUB
+      - TOKEN_GITHUB=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
     container_name: online-cv-api
     build:
       context: .

@@ -25,6 +25,7 @@ COPY ./package*.json ./
 RUN npm prune --omit=dev
 
 FROM base AS runner
+ARG TOKEN_GITHUB=${TOKEN_GITHUB}
 WORKDIR /app
 
 ENV TZ=Europe/Paris
